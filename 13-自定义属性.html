@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<div class="box" abc="abc" title="盒子" data-name="zs" data-content="我是div" data-my-name="zh"></div>
+		<script>
+			var box=document.querySelector('.box');
+			console.log(box.className);
+			console.log(box.title);
+			console.log(box.abc);//不能随便起名字
+			//如何获取标签的自定义属性呢？
+			//通过dataset[]方式获取
+			console.log(box.dataset['name']);//zs
+			console.log(box.dataset['content']);//我是div
+			//设置自定义属性的值
+			box.dataset['content']='aaaa';
+			console.log(box.dataset['content']);//aaa
+			//这句会在标签中出现
+			box.dataset['wid']='100px';
+			//如何获取data-my-name='zh'
+			console.log(box.dataset['myName']);//zh
+		</script>
+	</body>
+</html>

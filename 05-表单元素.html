@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			form {
+				width: 100%;
+				max-width: 640px;
+				min-width: 320px;
+				margin: 0 auto;
+				font-family: "microsoft yahei";
+				font-size: 20px;
+			}
+			input {
+				display:block;
+				width:100%;
+				height:30px;
+				margin:10px 0;
+			}
+			progress {
+				width: 600px;
+				height: 30px;
+			}
+		</style>
+	</head>
+	<body>
+		<!--action为ajax内容-->
+		<form action="">
+			<fieldset>
+				<legend>表单元素</legend>
+				<label for="">
+					用户名:<input type="text" name="uesrName"/>
+				</label>
+				<label for="">
+					密码:<input type="password" name="pwd"/>
+				</label>
+				<label for="">
+					性别:<input type="text" name="sex" list="sex"/>
+				</label>
+				<datalist id="sex">
+					<option>男</option>
+					<option>女</option>
+				</datalist>
+				<label for="">
+					<!--output：向外展示内容-->
+					推荐人:<output>春哥</output>
+				</label>
+				<br />
+				<!--keygen在谷歌中用不了，但在其他的浏览器能用-->
+				<!--加密：<keygen name="security" />-->
+				<label for="#">
+					<!--当value小于30或者大于80的时候，度量器背景色变黄（警告色）-->
+					度量器：<meter value="90" max="100" min="0" low="30" high="80"></meter>
+				</label>
+				<br />
+				<!--进度条-->
+				<progress value="40" max="100" min="0"></progress>
+			</fieldset>
+		</form>
+	</body>
+</html>

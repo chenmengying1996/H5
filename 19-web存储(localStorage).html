@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<input type="text"/>
+		<button>localStorage存储</button>
+		<button>localStorage获取</button>
+		<button>localStorage更新</button>
+		<button>localStorage删除</button>
+		<button>localStorage清除</button>
+		<script>
+			//数据存在硬盘上，永久生效
+			var txt=document.querySelector('input');
+			var btns=document.querySelectorAll("button");
+			//localStorage存储数据
+			btns[0].onclick=function(){
+				window.localStorage.setItem('userName',txt.value);
+				window.localStorage.setItem('passWord','123456');
+				window.localStorage.setItem('age','123');
+			}
+			//localStorage获取数据
+			btns[1].onclick=function(){
+				window.localStorage.getItem('userName');
+				txt.value=window.localStorage.getItem('userName');
+			}
+			//localStorage更新数据
+			btns[2].onclick=function(){
+				window.localStorage.setItem('userName',txt.value);
+			}
+			//localStorage删除数据
+			btns[3].onclick=function(){
+				window.localStorage.removeItem('userName');
+				window.localStorage.removeItem('passWord');
+			}
+			//localStorage清除数据
+			btns[4].onclick=function(){
+				window.localStorage.clear();
+			}
+		</script>
+	</body>
+</html>

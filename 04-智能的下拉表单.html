@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			input {
+				width:100%;
+				max-width: 640px;
+				min-width: 320px;
+				height: 30px;
+				font-size: 16px;
+				line-height: 30px;
+			}
+			
+			
+		</style>
+	</head>
+	<body>
+		<!--传统的下拉框，不能输入-->
+		<select>
+			<option>选项一</option>
+			<option>选项二</option>
+			<option>选项三</option>
+			<option>选项四</option>
+		</select>
+		<br />
+		<!--智能下拉框-->
+		<!--一个普通的输入框-->
+		<input type="text" list="car"/>
+		<!--数据列表标签-->
+		<datalist id="car">
+			<option>宝马</option>
+			<option>宝骏</option>
+			<option>宝强</option>
+			<option>奥迪</option>
+			<option>迪奥</option>
+			<option>奥迪奥</option>
+		</datalist>
+	</body>
+</html>

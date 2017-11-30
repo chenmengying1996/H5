@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+	</head>
+	<body>
+		<!--storage:1.特性：1:设置，读取方便 2:容量较大 3：只能存储字符串，可以将对象Json.stringify()编码存储
+			window.sessionStorage(会话存储)5M
+			window.localStorage(向本地保存数据)20M
+			有可能浏览器内存里面，有可能在硬盘上面
+			传统方式：document.cookie存储大小只有4k,并且解析复杂
+		-->
+		<!--1:window.sessionStorage:生命周期为关闭浏览器窗口；在同一个窗口下数据可以共享
+			2：window.localStorage:永久生效，除非手动删除；可以多窗口共享
+		-->
+		<!--方法详解：setItem(key,value)设置存储内容  getItem(key)读取存储内容 removeItem(key)删除链值为key的存储内容clear()清空所有存储内容key(n)以索引值来获取存储内容-->
+		<!--sessionStorage-->
+		<input type="text"/>
+		<button>sessionStorage存储</button>
+		<button>sessionStorage获取</button>
+		<button>sessionStorage更新</button>
+		<button>sessionStorage删除</button>
+		<button>sessionStorage清除</button>
+		<script>
+			var txt=document.querySelector("input");
+			var btns=document.querySelectorAll("button");
+			//sessionStorage存储数据
+			btns[0].onclick=function(){
+				window.sessionStorage.setItem('userName',txt.value);
+				window.sessionStorage.setItem('passWord','123456');
+				window.sessionStorage.setItem('age','123');
+			}
+			//sessionStorage获取数据
+			btns[1].onclick=function(){
+				window.sessionStorage.getItem('userName');
+				txt.value=window.sessionStorage.getItem('userName');
+			}
+			//sessionStorage更新数据
+			btns[2].onclick=function(){
+				window.sessionStorage.setItem('userName',txt.value);
+			}
+			//sessionStorage删除数据
+			btns[3].onclick=function(){
+				window.sessionStorage.removeItem('userName');
+				window.sessionStorage.removeItem('passWord');
+			}
+			//清空数据
+			btns[4].onclick=function(){
+				window.sessionStorage.clear();
+			}
+		</script>
+	</body>
+</html>

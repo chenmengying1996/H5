@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.box {
+				width: 300px;
+				height: 100px;
+				margin: 10px auto;
+				border: 1px solid #000000;
+			}
+			.active {
+				border-radius: 50%;
+				background-color: pink;
+			}
+		</style>
+	</head>
+	<body>
+		<button>切换</button>
+		<div class="box box1" id="box1"></div>
+		<div class="box box2"></div>
+		<div class="box box3"></div>
+		<div class="box box4"></div>
+		<script>
+			var box1=document.querySelector(".box1");
+			//添加类名：不会发生类名覆盖
+			box1.classList.add('active');
+			//删除类名：
+			box1.classList.remove('active');
+			//判断是否有类名
+			var f=box1.classList.contains('active');
+			console.log(f);
+			//切换类名
+			document.querySelector("button").onclick=function(){
+				document.querySelector(".box3").classList.toggle('active');
+			}
+		</script>
+	</body>
+</html>

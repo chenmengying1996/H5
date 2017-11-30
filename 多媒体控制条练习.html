@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				margin: 0;
+				padding: 0;
+			}
+			figcaption {
+				text-align: center;
+				line-height: 150px;
+				font-family: "微软雅黑";
+				font-size: 24px;
+			}
+			.player {
+				width: 720px;
+				height: 360px;
+				margin: 10px auto;
+				border: 1px solid #000000;
+				background-color: #000000;
+				border-radius:10px ;
+				/*对行内块元素适用，这说明video是行内块元素*/
+				/*text-align: center;*/
+				/*background: url(img/35.gif) center no-repeat;
+				/*左右居中，高度与父盒子等高*/
+				background-size: auto 100%; 
+				position: relative;
+			}
+			.player video {
+				height: 100%;
+				/*把video变成块状元素，让他巨中*/
+				display: block;
+				margin: 0 auto;
+			
+			}
+			/*控制条模块*/
+			.control {
+				width: 700px;
+				height: 40px;
+				background-color: rgba(255,255,0,0.3);
+				position: absolute;
+				bottom: 10px;
+				left: 10px;
+				border-radius: 10px;
+			}
+			.switch {
+				position: absolute;
+				width: 20px;
+				height: 20px;
+				/*background-color: red;*/
+				left: 10px;
+				top: 10px;
+				text-decoration: none;
+				text-align: center;
+				line-height: 20px;
+				color: yellow;
+			}
+			.progress {
+				width: 432px;
+				height: 10px;
+				background-color: rgba(255,255,0,0.4);
+				position: absolute;
+				left: 40px;
+				top: 15px;
+				border-radius:4px;
+				overflow: hidden;
+			}
+			.current-progress {
+				/*width: 50%;*/
+				width: 0;
+				height: 100%;
+				background-color: #FFFFFF;
+			}
+			.time {
+				/*background-color: red;*/
+				width: 120px;
+				height: 20px;
+				text-align: center;
+				line-height: 20px;
+				color: #FFFFFF;
+				position: absolute;
+				left: 510px;
+				top: 10px;
+				font-size: 12px;
+			}
+			.extend {
+				position: absolute;
+				width: 20px;
+				height: 20px;
+				/*background-color: red;*/
+				right: 10px;
+				top: 10px;
+				text-decoration: none;
+				text-align: center;
+				line-height: 20px;
+				color: yellow;
+			}
+		</style>
+		<link rel="stylesheet" href="css/font-awesome.min.css" />
+	</head>
+	<body>
+		<!--多媒体-->
+		<figure>
+			<!--多媒体标题-->
+			<figcaption>视频案例</figcaption>
+			<div class="player">
+				<video src="宋旻浩 - 몸.mp4"></video>
+				<!--控制条-->
+				<div class="control">
+					<!--播放状态切换按钮-->
+					<a href="#" class="switch fa fa-play"></a>
+					<!--当前进度-->
+					<div class="progress">
+						<div class="current-progress"></div>
+					</div>
+					<!--时间-->
+					<div class="time">
+						<span class="curr-time">00:00:00</span>
+						<span class="total-time">00:00:00</span>
+					</div>
+					<a href="#" class="extend fa fa-expand"></a>
+				</div>
+			</div>
+		</figure>
+		
+		<script type="text/javascript" src="js/jquery-1.11.1.min.js" ></script>
+		<script>
+			$(function(){
+				//思路：点击按钮：实现播放暂停并且切换图标
+//				算出视频总时长并显示
+				//当视频播放的时候，进度条同步，当前时间同步
+				//点击实现全屏
+				//获取需要的标签
+				var video=document.querySelector("video");
+				var playBtn=document.querySelector(".switch");
+				var currProgress=document.querySelector(".current-progress");
+				var currTime=document.querySelector(".curr-time");
+				var totalTime=document.querySelector(".total-time");
+				var extand=document.querySelector(".extend");
+				var tTime=0;
+				//点击按钮，实现播放暂停并且切换目标
+				playBtn.onclick=function(){
+					//如果视频播放，就暂停，如果暂停，就播放
+					if(video.paused){
+						video.play();
+						//要添加一个类之前，先要删除类
+						this.classList.remove("fa-play");
+						this.classList.add("fa-pause");
+					}else{
+						video.pause();
+						this.classList.remove("fa-pause");
+						this.classList.add("fa-play");
+					}
+				}
+				//算出视频总时长
+				//video.oncanplay:当加载完成后，视频能播放的时候
+				video.oncanplay=function(){
+					tTime=video.duration;
+//					console.log(tTime);
+				//将总秒数换算成00：00：00的形式
+				var h=Math.floor(tTime/3600);
+				var m=Math.floor(tTime%3600/60);
+				var s=Math.floor(tTime%60);
+				//三元表达式
+				h=h>10?h:"0"+h;
+				m=m>10?m:"0"+m;
+				s=s>10?s:"0"+s;
+				//显示出总时间
+				totalTime.innerHTML=h+":"+m+":"+s;
+				}
+				
+				//当视频播放的时候，进度条同步，当前时间同步
+				video.ontimeupdate=function(){
+//					console.log(video.currentTime);
+					var cTime=video.currentTime;
+					var h=Math.floor(cTime/3600);
+					var m=Math.floor(cTime%3600/60);
+					var s=Math.floor(cTime%60);
+					h=h>10?h:"0"+h;
+					m=m>10?m:"0"+m;
+					s=s>10?s:"0"+s;
+					//显示出当前时间
+					currTime.innerHTML=h+":"+m+":"+s;
+					//进度条同步
+					var value=cTime/tTime;
+					//所以要将总时间设置为全局变量，不然在另外一个函数里面获取不到局部变量
+					currProgress.style.width=value*100+"%";
+				}
+				//全屏
+				extand.onclick=function(){
+					video.webkitRequestFullScreen();
+				}
+			})
+		</script>
+	</body>
+</html>

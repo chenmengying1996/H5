@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.box {
+				width: 300px;
+				height: 100px;
+				margin: 10px auto;
+				border: 1px solid #000000;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="box box1" id="box1"></div>
+		<div class="box box2"></div>
+		<div class="box box3"></div>
+		<div class="box box4"></div>
+		<script>
+			var box1=document.querySelector(".box1");
+			box1.style.background="red";
+			//区别：只有符合条件的第一个变色
+			var box2=document.querySelector("div");
+			box2.style.background="yellow";
+		</script>
+		
+		
+	</body>
+</html>

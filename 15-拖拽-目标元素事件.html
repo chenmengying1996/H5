@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			.one {
+				width: 100px;
+				height: 100px;
+				border: 1px solid #000000;
+				background-color: red;
+			}
+			.two {
+				position: absolute;
+				width: 400px;
+				height: 400px;
+				top: 100px;
+				left: 500px;
+				border: 1px solid #000000;
+				background-color: blue;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="one" draggable="true"></div>
+		<div class="two"></div>
+		<script>
+			//目标元素的拖拽事件
+			var two=document.querySelector(".two");
+			//当被拖拽元素进入时触发:鼠标进入时触发
+			two.ondragenter=function(){
+				console.log("来了");
+			}
+			//当被拖拽元素离开时触发:鼠标离开时触发
+			two.ondragleave=function(){
+				console.log("离开了");
+			}
+			//当被拖拽元素在目标元素上时一直触发
+			two.ondragover=function(e){
+				//默认的无法将数据/元素放置到其他元素中。如果需要允许放置，我们必须阻止对元素的默认处理方式
+				e.preventDefault();
+				console.log("over.....");
+			}
+			//当在目标元素上松开鼠标时触发
+			two.ondrop=function(){
+				console.log("松开鼠标了");
+			}
+			//松开了之后，发现并没有触发事件
+		</script>
+	</body>
+</html>

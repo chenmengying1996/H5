@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>简单版</title>
+	</head>
+	<body>
+		<video> 
+			<source src="宋旻浩 - 몸.mp4"></source>
+			<source src="宋旻浩 - 몸.ogg"></source>
+			<source src="宋旻浩 - 몸.webm"></source>
+		</video>
+		<br />
+		<button>播放</button>
+		<button>暂停</button>
+		<script>
+			//:nth-child(n) 选择器匹配属于其父元素的第 N 个子元素，不论元素的类型。
+			document.querySelector('button:nth-child(3)').onclick=function(){
+//				alert(111);
+				//播放
+				document.querySelector("video").play();
+			}
+			document.querySelector('button:nth-child(4)').onclick=function(){
+				document.querySelector("video").pause();
+			}
+		</script>
+	</body>
+</html>

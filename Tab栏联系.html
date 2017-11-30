@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<style>
+			*{
+				padding: 0;
+				margin: 0;
+			}
+			nav {
+				width: 400px;
+				height: 40px;
+				margin: 0 auto;
+				border: 1px solid #000000;
+				background-color: #A3E0A2;
+				text-align: center;
+				
+			}
+			nav a {
+				display: inline-block;
+				width:90px;
+				height:40px;
+				text-decoration:none;
+				text-align: center;
+				line-height:40px;
+				color: #333;
+				background-color: #b6dcb6;
+			}
+			section {
+				margin: 0 auto;
+				width: 400px;
+				height: 180px;
+				border: 1px solid #000000;
+				display: none;
+			}
+			li {
+				list-style-position: inside;
+			}
+			.active {
+				background-color: #FFFFFF;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="tabs">
+			<nav>
+				<a href="javascript:;"data-cont="local">国内新闻</a>
+				<a href="javascript:;"data-cont="global">国际新闻</a>
+				<a href="javascript:;"data-cont="sports">体育新闻</a>
+				<a href="javascript:;"data-cont="funny">娱乐新闻</a>
+			</nav>
+			<section class="cont" id="local">
+				<ol>
+					<li>父母给孩子创设新姓氏落户被拒 最高法:不合法</li>
+					<li>宁波突发爆炸 目击者:情况较为严重 有人员伤亡</li>
+					<li>papi酱注册商标遭拒后起诉被驳回:与其他商标近似</li>
+					<li>曝光"教科书式耍赖"男子:被逼无奈 只有两个要求</li>
+					<li>阿根廷"圣胡安"号潜艇失联超9天 女军官照片公布</li>
+					<li>埃及清真寺遇袭已致235人遇难 枪手乱枪扫射信众</li>
+					<li>壕!湖南一男子自上到下买5套房 打穿楼板自建电梯</li>
+				</ol>
+			</section>
+			<section class="cont" id="global">
+				<ol>
+					<li>无人机恐袭让欧美如临大敌 美国正做反制准备</li>
+					<li>阿根廷海军:失联潜艇出发前做过安全检查 状况良好</li>
+					<li>美海军第七舰队坠机事件:三名坠机死者身份确认</li>
+					<li>韩国家庭每户平均负债额达43万元 负债规模不断扩大</li>
+					<li>津巴布韦危机协调人谈穆加贝下台:民众呼声触动他</li>
+					<li>法国掀反性暴力运动 马克龙:不该让女性感到恐惧</li>
+					<li>日媒:上海将建东京审判纪念馆 或成抗日教育基地</li>
+				</ol>
+			</section>
+			<section class="cont" id="sports">
+				<ol>
+					<li>维斯28+12+9憾失三双 大比分落后他还不停传传传</li>
+					<li>进球太难!C罗遇开挂门神后爆粗:这是TM什么运气</li>
+					<li>库里秒变买菜小哥 跟麦基打赌赌输戴上搞笑腰包</li>
+					<li>前10投全丢!库里这么铁太罕见 半场他捡起投篮包</li>
+					<li>格里芬33分+3.2秒准绝杀 快船逆转国王获2连胜</li>
+					<li>该配合你演出的我尽力在表演 考神扎扎一同假摔</li>
+					<li>不能忍!马内遭羞辱式换人 就踢2分钟+与渣叔互喷</li>
+				</ol>
+			</section>
+			<section class="cont" id="funny">
+				<ol>
+					<li>天佑曾与赵本山女儿闹绯闻 如今疑被本山传媒起诉</li>
+					<li>刘恺威称给杨幂洗过内衣内裤 不介意她翻自己手机</li>
+					<li>刘涛贤妻形象崩塌？ 连吐漱口水都让人接</li>
+					<li>金马54惠英红终夺影后 《相爱相亲》7提0中成炮灰</li>
+					<li>尴尬惹！金马影帝涂们台下睡着被抓包 还有特写</li>
+					<li>蔡依林金马一开口就大走音！网友嘘爆：太可怕了</li>
+					<li>郭晶晶一家三口出席慈善活动 儿子表情亮了</li>
+				</ol>
+			</section>
+		</div>
+		<script>
+			//需求：默认显示一个当前样式；点击导航实现切换
+			//key表示当前显示的是第几个
+			function tabs(key){
+				var navs=document.querySelectorAll("nav a");
+//				alert(navs.length);4
+				//遍历：给每个导航绑定事件，并且添加当前样式
+				for(var i=0;i<navs.length;i++){
+					//如果是当前用户指定的当前样式
+					if(i===key){
+						navs[i].classList.add('active');
+						//拿到要显示内容section的id
+						var secId=navs[i].dataset['cont'];
+						document.querySelector('#'+secId).style.display="block";
+					}
+					
+					//趁着在for循环里面，给每一个a标签绑定事件
+					navs[i].onclick=function(){
+						//排他：之前有active样式的清除，之前显示的section隐藏
+						var currentNav=document.querySelector('.active');
+						//获取此时有active类的a标签的id名称
+						var currentId=currentNav.dataset['cont'];
+						//清除掉之前有active类名的a标签的active类
+						currentNav.classList.remove('.active');
+						document.querySelector('#'+currentId).style.display="none";
+						//突出显示自己
+						this.classList.add('.active');
+						//对应的section模块显示
+						var myId=this.dataset['cont'];
+						document.querySelector('#'+myId).style.display="block";
+					}
+				}
+			}
+			tabs(2);
+		</script>
+	</body>
+</html>
